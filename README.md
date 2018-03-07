@@ -22,6 +22,8 @@ function shift(arr,direction,number){
     }
     return console.log(arr);
 }
+shift(['john', 'jane', 'sarah', 'alex'], 'left', 2)
+shift([1,2,3,4,5],'left',3);
 ```
 2. Download [hero.json](https://github.com/takemetour/job-quest-intern-2018/blob/master/hero.json) and write a code to caculate these values from **hero.json**
 - 2.1 Average **networth** of all heroes
@@ -32,28 +34,14 @@ function shift(arr,direction,number){
 Answer:
 ```javascript
 const hero  = require('./hero.json')
-const averageNetworth = (arr) => {
-    let totalnetworth = arr.reduce((total,hero)=>total+hero.networth,0);
-    let aveNet = totalnetworth / arr.length;
-    return aveNet
-}
-const averageIntLevel = function(arr){
-    let intHero = arr.filter(hero=>hero.primary_attribute==='intelligent');
-    let averageIntHeroLevel = intHero.reduce((total, hero)=>total+hero.level,0)/intHero.length;
-    return averageIntHeroLevel
-}
-const mostAssist = (arr) => {
-    let most = arr.reduce((a,b)=>a.assist>b.assist?a:b);
-    return most.name + ' Assist ' + most.assist
-}
-const worstKDR = (arr) => {
-    let worst = hero.reduce((a,b)=>a.kill/a.death<b.kill/b.death?a:b);
-    return worst.name + ' K/D ' +worst.kill/worst.death;
-}
-console.log('Average Networth of all hero = '+averageNetworth(hero));
-console.log('Average Lever of Intellegent hero = '+averageIntLevel(hero));
-console.log('Most Hero Assist = '+mostAssist(hero));
-console.log('Worst Hero K/D = '+worstKDR(hero));
+const averageNetworth = (arr) => arr.reduce((total,hero,i,a)=>total+hero.networth/a.length,0)
+const averageIntLevel = (arr) => arr.filter(hero=>hero.primary_attribute==='intelligent').reduce((total,hero,i,a)=>total+hero.level/a.length,0)
+const mostAssist = (arr) => arr.reduce((a,b)=>a.assist>b.assist?a:b).name
+const worstKDR = (arr) => arr.reduce((a,b)=>a.kill/a.death<b.kill/b.death?a:b).name
+console.log('Average Networth of all hero is '+averageNetworth(hero))
+console.log('Average Lever of Intellegent hero is '+averageIntLevel(hero))
+console.log('Most Hero Assist is '+mostAssist(hero))
+console.log('Worst Hero K/D is '+worstKDR(hero))
 ```
 
 ## Simple Web Application: A joke from Chuck Norris.
@@ -73,12 +61,14 @@ This part of quest will be a challenging one. You are going to make a simple web
 - If you are using tools & framework which is same as our tech stack (React, Redux, styled-components, recompose etc.) will be a plus.
 - Any extra feature will be a plus.
 
+extar feature : add to home screen on mobile
 here is the [app](https://blog-793b9.firebaseapp.com/)
+here is [source](https://github.com/Mr-nojoke/chuckmeplz)
 
 ## Questions
 Q1: What is GraphQL and how it is different from REST API?
 
-A1: GraphQL is a query language that have type witch is greatly improve the readability of query and respond is just what you ask REST API is an architectural style for distributed hypermedia systems 
+A1: GraphQL is a query language that have type witch is greatly improve the readability of query and respond is just what you ask in a single reauest REST API is an architectural style for distributed hypermedia systems it is possible to have multiple call in one request
 
 
 Q2: Please explain how javascript benefits from cross-platform development
